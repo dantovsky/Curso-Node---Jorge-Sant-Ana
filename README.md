@@ -1,2 +1,3 @@
-# Curso-Node---Jorge-Sant-Ana
-Curso Completo do Desenvolvedor NodeJS e MongoDB
+# ~ ~ ~ Curso Completo do Desenvolvedor NodeJS e MongoDB ~ ~ ~
+
+By Jorge-Sant-Ana

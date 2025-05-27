@@ -17,10 +17,9 @@ var app = express();
 // configs
 // ----------------------------------------------------
 
-// set the variables "view engine" and "view" of the express
+// set the variables "view engine" and "views" of the express
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
-
 
 // config the meddlewares express.static
 app.use(express.static('./app/public'));
@@ -31,12 +30,12 @@ app.use(bodyParser.urlencoded({extended: true})); // when do some post submition
 // config tht express-validator middleware
 app.use(expressValidator());
 
-// config the autoload to the routes, models and controllers (by Consign)
+// config the autoload to the routes, models and controllers to the app objecte (by Consign)
 consign()
 	.include('app/routes')
 	.then('app/models')
 	.then('app/controllers')
 	.into(app);
 	
-// exports  the app objetc
+// exports the app objetc
 module.exports = app;
