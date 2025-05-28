@@ -2,6 +2,11 @@
 
 # --- Seção 13: Projeto prático - Multiroom Chat real-time com WebSocket
 
+![Multiroom Chat](img/tela-inicial.png)
+
+Print de janelas de conversação e participantes, simulando três clientes distintos:
+![Janelas do multiroom chat](img/janelas-da-app.png)
+
 Objetivos:
 - Utilizar WebSockets para a criação de uma aplicação de tempo real.
 - Quebrar o paradigma de que o cliente sempre tem que fazer uma requisição. Agora, o servidor também pode requisitar uma ação para o próprio cliente.
