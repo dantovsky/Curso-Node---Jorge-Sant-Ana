@@ -72,30 +72,7 @@
 		<div class="row conversa" id="conversa">
 			<div class="col-md-1"></div>
 			<div class="col-md-10" id="dialogos">
-				<!-- <div class="dialogo">
-					<h4>Jorge</h4>
-					<p>Fala José, blz cara?</p>
-				</div>
-
-				<div class="dialogo">
-					<h4>José</h4>
-					<p>Opa, tudo certo!</p>
-				</div>
-
-				<div class="dialogo">
-					<h4>Jorge</h4>
-					<p>Vai estudar mais sobre NodeJS hoje?</p>
-				</div>
-
-				<div class="dialogo">
-					<h4>José</h4>
-					<p>Sim, com certeza. Vamos trabalhar com Websockets hoje, o assunto é bem interessante</p>
-				</div>
-
-				<div class="dialogo">
-					<h4>Jorge</h4>
-					<p>Show de bola, comunicação bi-direcional em páginas ou sistemas web é muito bacana mesmo</p>
-				</div> -->
+				<!-- Listagem dos diálogos -->
 			</div>
 			<div class="col-md-1"></div>
 
@@ -103,21 +80,8 @@
 
 		<div class="row participantes" id="participantes" style="display:none">
 			<div class="col-md-1"></div>
-			<div class="col-md-10">
-				<span class="participante">
-					<img src="images/ico_usuario.png" />
-					Jorge
-				</span>
-
-				<span class="participante">
-					<img src="images/ico_usuario.png" />
-					José
-				</span>
-
-				<span class="participante">
-					<img src="images/ico_usuario.png" />
-					Fernando
-				</span>
+			<div class="col-md-10" id="pessoas">
+				<!-- Lista dos participantes :: gerados dinamicamente pelo jQuery -->
 			</div>
 			<div class="col-md-1"></div>
 
@@ -131,8 +95,10 @@
 					<div class="input-group">
 						<!-- Campo mensagem -->
 						<input type="text" class="form-control" placeholder="Mensagem" id="mensagem">
+						<input type="hidden" value="<%=dadosForm.apelido%>" id="apelido">
+						<input type="hidden" value="0" id="apelido_atualizado_nos_clientes">
 						<span class="input-group-btn">
-							<button class="btn btn-default" type="button" id="enviar_mensagem">></button>
+							<button class="btn btn-default" type="button" id="enviar_mensagem">»</button>
 						</span>
 					</div>
 				</div>
@@ -150,6 +116,31 @@
 		// Instancia do objeto que se conecta com o WebSocket
 		var socket = io('http://localhost'); // por padrão é na porta 80
 
+		// Emitir ao servidor a mensagem enviada pelo cliente
+		$('#enviar_mensagem').click(function () {
+
+			socket.emit(
+				'msgParaServidor',
+				{
+					apelido: $('#apelido').val(),
+					mensagem: $('#mensagem').val(),
+					apelido_atualizado_nos_clientes: $('#apelido_atualizado_nos_clientes').val()
+				}
+			);
+
+			$('#apelido_atualizado_nos_clientes').val(1);
+		})
+
+		// Faz o click no botão de "Eenviar" ao fazer "Enter" no input da mensagem
+		$('#mensagem').keypress(function (e) {
+			var key = e.which;
+			if(key == 13) // the enter key code
+			{
+				$('#enviar_mensagem').click();
+				$('#mensagem').val('');
+			}
+		});
+
 		socket.on('msgParaCliente', function(data){
 			var html = '';
 			html += '<div class="dialogo">';
@@ -158,7 +149,20 @@
 			html += '</div>';
 
 			$('#dialogos').append(html);
-		})
+
+			// Mantém o scroll sempre na parte de baixo da conversa
+			window.scrollTo(0, document.body.scrollHeight)
+		});
+
+		socket.on('participantesParaCliente', function(data){
+			var html = '';
+			html += '<span class="participante">';
+			html += '<img src="images/ico_usuario.png"> ';
+			html += data.apelido;
+			html += '</span>';
+
+			$('#pessoas').append(html);
+		});
 	</script>
 </body>
 

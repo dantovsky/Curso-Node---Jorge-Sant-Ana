@@ -2,7 +2,9 @@
 
 # --- Seção 13: Projeto prático - Multiroom Chat real-time com WebSocket
 
-Andamento das aulas: estou na aula 61
+Objetivos:
+- Utilizar WebSockets para a criação de uma aplicação de tempo real.
+- Quebrar o paradigma de que o cliente sempre tem que fazer uma requisição. Agora, o servidor também pode requisitar uma ação para o próprio cliente.
 
 # Dependências necessárias para o projeto:
 
@@ -61,8 +63,8 @@ O NodeJS disponibiliza essa tecnologia através do SocketIO.
 Para estabelecer um diálogo, é necessário que, de um lado, alguém esteja ouvindo » `on()`
 ...e do outro lado é necessário que alguém esteja falando » emit()
 
-`on('nome', function(data) {})`
+`on('nome', function(data) {})`  
 Ouvindo pedidos de execução
 
-`emit('nome', {})`
+`emit('nome', {})`  
 O emit() faz um pedido para executar alguma ação.
