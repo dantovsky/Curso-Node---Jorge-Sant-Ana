@@ -1,6 +1,6 @@
 # ~ ~ ~ Curso Completo do Desenvolvedor NodeJS e MongoDB ~ ~ ~
 
-# --- Seção 13: Projeto prático - Multiroom Chat real-time com WebSocket
+## Seção 13: Projeto prático - Multiroom Chat real-time com WebSocket
 
 ![Multiroom Chat](img/tela-inicial.png)
 
@@ -11,7 +11,7 @@ Objetivos:
 - Utilizar WebSockets para a criação de uma aplicação de tempo real.
 - Quebrar o paradigma de que o cliente sempre tem que fazer uma requisição. Agora, o servidor também pode requisitar uma ação para o próprio cliente.
 
-# Dependências necessárias para o projeto:
+## Dependências necessárias para o projeto:
 
 - `Express`
 - `Engine de view EJS`
@@ -19,7 +19,7 @@ Objetivos:
 - `Body-parser` (middleware que popula a variável body que contém os elementos de formulário transitados nas requisições)
 - `Express Validator` (módulo que valida as infos digitadas em fomulários)
 
-# Passos
+## Passos
 
 1. Criar um diretório
 2. Iniciar com NPM (para iniciar a app)
@@ -37,21 +37,21 @@ Objetivos:
 8. Socket.io
     - npm install socket.io@2.0.3 --save
 
-# Instalações para desenvolvimento
+## Instalações para desenvolvimento
 
 Nodemon (para rodar a app)
 ```bash
 npm install -g nodemon --save-dev
 ```
 
-# Como iniciar a app
+## Como iniciar a app
 
 Iniciar o Nodemon
 ```bash
 nodemon app
 ```
 
-# Intro ao Websocket e Socket.io
+## Intro ao Websocket e Socket.io
 
 » `O que é Socket?`  
 Mecanismo de comunicação usado para implementar um modelo cli-server que permite a troca de mensagens entre processos  
